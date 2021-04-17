@@ -2,8 +2,11 @@ window.onload = (event) =>  {
     document.normalize();
     let title = document.querySelector("#title");
     title.focus();
-
 };
+
+window.close = () => {
+    window.alert('Closing')
+}
 
 var index = 0;
 var timeStamps = [];

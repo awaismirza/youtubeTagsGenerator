@@ -21,20 +21,23 @@ body {
 .grid-container > div {
     background-color: rgb(1, 103, 103);
     text-align: center;
-    padding: 20px 0;
+    padding: 20px ;
     font-size: 30px;
   }
 
   #title {
     width: 80%;
-    padding: 12px 20px;
+    padding: 15px 15px;
+    margin: 15px 15px;
     font-family: 'Courier New', Courier, monospace;
   }
 
   input[type=number] {
-    width: 30px;
-    padding: 12px 20px;
+    width: auto;
+    padding: 5px 5px;
     font-family: 'Courier New', Courier, monospace;
+    font-size: large;
+
   }
 
     input[type=submit] {
