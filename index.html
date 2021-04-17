@@ -14,14 +14,14 @@
     <div class="grid-container">
         <div class="time-stamp-form">
             <form onsubmit="event.preventDefault(); addTimestamp();">
-                <input type="text" id="title" placeholder="Time Title Type .... ">
+                <input type="text" id="title" placeholder="Time Code Title .... ">
                 <div id="time">
                     <input type="number" min="0" max="12" value="0" id="hour" class="time-hour" placeholder="Hours ">
                     <input type="number" min="0" max="60" value="0" id="minutes" class="time-minute" placeholder="Minutes">
                     <input type="number" min="0" max="60" value="0" id="seconds" class="time-second" placeholder="Seconds">
                     <input type="submit" value="Submit">
                 </div>
-            </form> 
+            </form>
         </div>
         <div class="time-stamp-preview">
             <ul id="timestamps"></ul>
