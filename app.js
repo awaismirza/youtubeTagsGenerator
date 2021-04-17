@@ -4,9 +4,6 @@ window.onload = (event) =>  {
     title.focus();
 };
 
-window.close = () => {
-    window.alert('Closing')
-}
 
 var index = 0;
 var timeStamps = [];
