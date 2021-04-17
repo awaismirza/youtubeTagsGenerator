@@ -54,10 +54,8 @@ function addTimestamp() {
         renderTimeCode(o);
         return;
     } 
-    console.log(index);
-    console.log(this.timeStamps)
-    console.log(o.date , "   ", timeStamps[index - 1]["date"])
-    if (){
+    
+    if (o.date > timeStamps[index - 1]["date"]){
         renderTimeCode(o);
     } else {
         window.alert("Incremenet the time")
