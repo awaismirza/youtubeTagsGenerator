@@ -5,8 +5,7 @@ window.onload = (event) =>  {
 
 
 var index = 0;
-var lastDate = [];
-var timeStamps = [];
+var lastDate = 0;
 
 let title = document.querySelector("#title");
 let hours = document.querySelector("#hour");
@@ -14,18 +13,8 @@ let minutes = document.querySelector("#minutes");
 let seconds = document.querySelector("#seconds");
 
 
-function timeCodeObject() {
-    let date = new Date();
-
-    date.setHours(hours.value);
-    date.setMinutes(minutes.value);
-    date.setSeconds(seconds.value);
-    
-    return {title: title.value, date: date}
-}
-
-function createTimeString(date) {
-    const timeArray = [date.getHours(), date.getMinutes(), date.getSeconds()];
+function createTimeString() {
+    const timeArray = [hours.value, minutes.value, seconds.value];
     let time = "";
     timeArray.forEach((e) => {
         e = String(e);
@@ -36,27 +25,21 @@ function createTimeString(date) {
         }
     })
     return time.slice(0 , -1);
-    // return `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 }
 
-function renderTimeCode(o) {
+function renderTimeCode() {
     let ul = document.querySelector("#timestamps");
     let li = document.createElement("li");
-    li.innerHTML = `${createTimeString(o.date)} - ${o.title}`;
+    li.innerHTML = `${createTimeString()} - ${title.value}`;
     ul.appendChild(li);
-    timeStamps.push(o);
-    lastDate = [hours.value, minutes.value, seconds.value];
 }
 
 function addTimestamp() {
-    const o = timeCodeObject();
-    if (index == 0) {
-        renderTimeCode(o);
-        return;
-    } 
-    
-    if (o.date > timeStamps[index - 1]["date"]){
-        renderTimeCode(o);
+    const currentDate = (hours.value+minutes.value+seconds.value);
+    if (index == 0 || parseInt(currentDate) > parseInt(lastDate)){
+        renderTimeCode();
+        lastDate = currentDate;
+        index++
     } else {
         window.alert("Incremenet the time")
         hours.focus();
