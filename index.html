@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>YouTube Time Stamps</title>
+</head>
+<body>
+    <div id="appTitle">
+        <h1>Youtube Timestamp Generator</h1>
+    </div>
+    <div class="grid-container">
+        <div class="time-stamp-form">
+            <form onsubmit="event.preventDefault(); addTimestamp();">
+                <input type="text" id="title" placeholder="Time Title Type .... ">
+                <div id="time">
+                    <input type="number" min="0" max="12" value="0" id="hour" class="time-hour" placeholder="Hours ">
+                    <input type="number" min="0" max="60" value="0" id="minutes" class="time-minute" placeholder="Minutes">
+                    <input type="number" min="0" max="60" value="0" id="seconds" class="time-second" placeholder="Seconds">
+                    <input type="submit" value="Submit">
+                </div>
+            </form> 
+        </div>
+        <div class="time-stamp-preview">
+            <ul id="timestamps"></ul>
+        </div>
+    </div>
+    <script src="./app.js"></script>
+</body>
+</html>
