@@ -1,58 +1,69 @@
 window.onload = (event) =>  {
-    document.normalize();
     let title = document.querySelector("#title");
     title.focus();
 };
 
 
 var index = 0;
+var lastDate = [];
 var timeStamps = [];
 
-function createTime(hours, minutes, seconds) {
-    return `${hours}:${minutes}:${seconds}`;
+let title = document.querySelector("#title");
+let hours = document.querySelector("#hour");
+let minutes = document.querySelector("#minutes");
+let seconds = document.querySelector("#seconds");
+
+
+function timeCodeObject() {
+    let date = new Date();
+
+    date.setHours(hours.value);
+    date.setMinutes(minutes.value);
+    date.setSeconds(seconds.value);
+    
+    return {title: title.value, date: date}
 }
 
-function createStampObject(time, title, id) {
-    return {
-        id: id,
-        title: title,
-        time: time
-    }
+function createTimeString(date) {
+    const timeArray = [date.getHours(), date.getMinutes(), date.getSeconds()];
+    let time = "";
+    timeArray.forEach((e) => {
+        e = String(e);
+        if (e.length == 1) {
+            time = time.concat(("0" + e + ":"));
+        } else {
+            time = time.concat(e + ":");
+        }
+    })
+    return time.slice(0 , -1);
+    // return `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 }
 
-function validateTime(time, index) {
-    return index == 0  ? true : (time > this.timeStamps[(index - 1)]["time"] ? true : false )
-}
-
-
-function updateTimestamp(index) {
+function renderTimeCode(o) {
     let ul = document.querySelector("#timestamps");
-        let li = document.createElement("li");
-        li.innerHTML = ` ${this.timeStamps[index].time} - ${this.timeStamps[index].title}`
-        ul.appendChild(li);
+    let li = document.createElement("li");
+    li.innerHTML = `${createTimeString(o.date)} - ${o.title}`;
+    ul.appendChild(li);
+    timeStamps.push(o);
+    lastDate = [hours.value, minutes.value, seconds.value];
 }
 
 function addTimestamp() {
-    let title = document.querySelector("#title");
-    let hours = document.querySelector("#hour");
-    let minutes = document.querySelector("#minutes");
-    let seconds = document.querySelector("#seconds");
-
-
-    const timeValue = createTime(hours.value, minutes.value, seconds.value);
-    const validTime = validateTime(timeValue, index);
-    if(validTime !== true) {
-        window.alert('Increment the Time');
-        hours.focus();
+    const o = timeCodeObject();
+    if (index == 0) {
+        renderTimeCode(o);
         return;
+    } 
+    console.log(index);
+    console.log(this.timeStamps)
+    console.log(o.date , "   ", timeStamps[index - 1]["date"])
+    if (){
+        renderTimeCode(o);
+    } else {
+        window.alert("Incremenet the time")
+        hours.focus();
     }
-    const titleValue = title.value;
-    const timeStamp = createStampObject(timeValue, titleValue, index);
 
-    this.timeStamps.push(timeStamp);
-    console.log(this.timeStamps);
-    updateTimestamp(this.index);
     title.value = '';
     title.focus();
-    this.index++;
 }
