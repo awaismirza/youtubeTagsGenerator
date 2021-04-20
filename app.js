@@ -36,15 +36,18 @@ function renderTimeCode() {
 
 function addTimestamp() {
     const currentDate = (hours.value+minutes.value+seconds.value);
-    if (index == 0 || parseInt(currentDate) > parseInt(lastDate)){
-        renderTimeCode();
+    f (index == 0 || parseInt(currentDate) > parseInt(lastDate)) {
+        renderTimeString();
         lastDate = currentDate;
-        index++
-    } else {
-        window.alert("Incremenet the time")
+        index++;
+        title.value = '';
+        title.focus();
+    } else if( parseInt(currentDate) <= parseInt(lastDate)) {
+        window.alert("Increment the time")
         hours.focus();
-    }
-
-    title.value = '';
-    title.focus();
+    } else {
+        window.alert('Error')
+        title.value = '';
+        title.focus();
+    };
 }
