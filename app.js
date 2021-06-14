@@ -36,7 +36,7 @@ function renderTimeCode() {
 
 function addTimestamp() {
     const currentDate = (hours.value+minutes.value+seconds.value);
-    f (index == 0 || parseInt(currentDate) > parseInt(lastDate)) {
+    if (index == 0 || parseInt(currentDate) > parseInt(lastDate)) {
         renderTimeString();
         lastDate = currentDate;
         index++;
